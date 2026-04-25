@@ -9,11 +9,20 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
+
+@supports ((-webkit-text-stroke: 1px black) or (text-stroke: 1px black)) {
+  .text {
+    -webkit-text-stroke: 1px black;
+    text-stroke: 1px black;
+  }
+}
+
 :focus {
   outline: none;
 }
 
 .page {
+  font-variation-settings: "wght" 400;
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: var(--inter-ff);
@@ -95,6 +104,7 @@
   margin-inline: 10px;
   margin-block: 4px;
   font-size: 18px;
+  font-variation-settings: "wght" 785;
 }
 
 .trailer-image {
@@ -265,8 +275,6 @@
   flex-direction: column;
   align-items: center;
   padding: 15px 19px;
-
-  border: 2px solid;
   justify-self: center;
   margin-block-end: 100px;
   background: linear-gradient(to right, black 50%, white 50%) no-repeat;
@@ -274,7 +282,6 @@
   background-position: right;
   transition: background-position 2s ease;
   justify-content: center;
-  align-items: center;
   cursor: pointer;
   outline: none;
   color: white;
@@ -434,8 +441,8 @@ dialog::backdrop {
   }
 
   .open__dialog-button {
-    align-items: center;
-    flex-direction: row;
+    display: block;
+
     gap: 8px;
     padding-inline: 20px;
   }
