@@ -1,0 +1,30 @@
+/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+  /* 1. Вертикальные полосы (слева направо) */
+  /* 2. Горизонтальные полосы (сверху вниз) */
+  /* 3. Фоновый цветовой переход */
+  --complex-grid-bg:
+    repeating-linear-gradient(
+      to right,
+      rgba(26, 26, 26, 1) 0,
+      rgba(26, 26, 26, 1) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(26, 26, 26, 1) 0,
+      rgba(26, 26, 26, 1) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(231, 231, 231, 1) 0%,
+
+      rgba(26, 26, 26, 1) 100%
+    );
+  --inter-ff: "Inter", sans-serif;
+  --pressStart2P-ff: "Press Start 2P", sans-serif;
+  --white-bg-color: white;
+}
