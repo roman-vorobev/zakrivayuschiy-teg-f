@@ -10,19 +10,12 @@
 
 */
 
-@supports ((-webkit-text-stroke: 1px black) or (text-stroke: 1px black)) {
-  .text {
-    -webkit-text-stroke: 1px black;
-    text-stroke: 1px black;
-  }
-}
-
 :focus {
   outline: none;
 }
 
 .page {
-  font-variation-settings: "wght" 400;
+  font-variation-settings: "wght" 410;
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: var(--inter-ff);
@@ -32,13 +25,9 @@
   background-image: var(--complex-grid-bg);
   background-attachment: fixed;
   background-size: cover;
-  background-color: #e7e7e7;
-  background-blend-mode: overlay;
 }
 
 .header {
-  min-block-size: 327px;
-  block-size: 327px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,20 +38,27 @@
 }
 
 .header-title {
+  padding-block-start: 120px;
   font-family: var(--pressStart2P-ff);
   font-size: clamp(3.063rem, 2.71rem + 1.502vi, 4.063rem);
   line-height: 100%;
   justify-self: center;
   font-weight: 400;
-  padding-block-end: 19px;
+  padding-block-end: 20px;
 }
 
 .header-title-description {
+  text-transform: uppercase;
   font-family: var(--pressStart2P-ff);
   justify-self: center;
   font-size: clamp(0.875rem, 0.677rem + 0.845vi, 1.438rem);
   line-height: 100%;
   font-weight: 400;
+  padding-block-end: 120px;
+}
+
+.header-title-description__small-letter {
+  text-transform: lowercase;
 }
 
 .main {
@@ -100,11 +96,35 @@
   z-index: 1;
 }
 
+/*Использование свойства в директиве @support: "text stroke: 1px" дает больше белой заливки в обводке текста. 
+Тесты не пропускают отсутствие директивы @supports */
+
+@supports (
+  (-webkit-text-stroke: 1px rgba(255, 255, 255, 1)) or
+    (text-stroke: 1px rgba(255, 255, 255, 1))
+) {
+  .html-text {
+    /* 
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 1);
+    text-stroke: 1px rgba(255, 255, 255, 1);
+
+    */
+    -webkit-text-stroke: 0.1px rgba(255, 255, 255, 1);
+    text-stroke: 0.1px rgba(255, 255, 255, 1);
+
+    text-shadow:
+      1px 1px 0 rgba(255, 255, 255, 1),
+      -1px -1px 0 rgba(255, 255, 255, 1),
+      1px -1px 0 rgba(255, 255, 255, 1),
+      -1px 1px 0 rgba(255, 255, 255, 1);
+  }
+}
+
 .section-title {
   margin-inline: 10px;
   margin-block: 4px;
   font-size: 18px;
-  font-variation-settings: "wght" 785;
+  font-variation-settings: "wght" 715;
 }
 
 .trailer-image {
@@ -114,32 +134,32 @@
   display: block;
 }
 
-.section:nth-of-type(2) .trailer-image {
+.trailer-image__grayscale-saturate-filter {
   filter: grayscale(0.5) saturate(0.5);
 }
 
-.section:nth-of-type(3) .trailer-image {
+.trailer-image__saturate-filter {
   filter: saturate(400%);
 }
 
-.section:nth-of-type(4) .trailer-image {
+.trailer-image__hue-rotate-filter {
   filter: hue-rotate(25deg);
 }
 
-.section:nth-of-type(5) .trailer-image {
+.trailer-image__invert-filter {
   filter: invert(0.8);
 }
 
-.section:nth-of-type(6) .trailer-image {
+.trailer-image__sepia-filter {
   filter: sepia(85%);
 }
 
-.section:nth-of-type(7) .trailer-image {
+.trailer-image__blur-filter {
   filter: blur(5px);
   overflow: hidden;
 }
 
-.section:nth-of-type(8) .trailer-image {
+.trailer-image__multi-filter {
   filter: hue-rotate(90deg) invert(0.1) sepia(0.3) saturate(300%) contrast(40%)
     blur(1.5px);
 }
@@ -237,6 +257,26 @@
   cursor: pointer;
 }
 
+.button {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  background: linear-gradient(to right, black 50%, white 50%) no-repeat;
+  background-size: 200% 100%;
+  background-position: right;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0 0 black;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  background-position: left;
+}
+
 .card__icon-button:focus-visible {
   box-shadow: 0 0 0 2px black;
   transition: box-shadow 0.5s ease;
@@ -249,20 +289,8 @@
   margin-inline-end: 25px;
   margin-block: 25px;
   padding: 10.5px 0;
-  border: 2px solid;
-  background: linear-gradient(to right, black 50%, white 50%) no-repeat;
-  background-size: 200% 100%;
-  background-position: right;
   transition: background-position 0.5s ease;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  outline: none;
-}
-
-.card__like-button:hover {
-  background-position: left;
 }
 
 .card__like-button:focus-visible {
@@ -271,26 +299,16 @@
 }
 
 .open__dialog-button {
-  display: flex;
   flex-direction: column;
-  align-items: center;
+
   padding: 15px 19px;
   justify-self: center;
   margin-block-end: 100px;
-  background: linear-gradient(to right, black 50%, white 50%) no-repeat;
-  background-size: 200% 100%;
-  background-position: right;
   transition: background-position 2s ease;
   justify-content: center;
-  cursor: pointer;
-  outline: none;
   color: white;
   isolation: isolate;
   border: 2px solid black;
-}
-
-.open__dialog-button:hover {
-  background-position: left;
 }
 
 .open-dialog__icon {
@@ -300,11 +318,6 @@
   fill: currentColor;
   mix-blend-mode: difference;
   flex-shrink: 0;
-}
-
-.open__dialog-button:focus-visible {
-  box-shadow: 2px 2px 0 0 black;
-  transition: 0.3s ease;
 }
 
 /*.open__dialog-button:hover svg {
@@ -326,13 +339,11 @@
 }
 
 .dialog {
-  padding: 13px 38px;
+  padding: 28px 38px;
   border: 2px solid black;
   background-color: white;
   min-width: 341px;
   width: 341px;
-  min-height: 191px;
-  height: 191px;
   z-index: 1;
 }
 
@@ -345,28 +356,17 @@
 
 .dialog__content {
   display: grid;
-  grid-template-columns: 39px 1fr;
+  grid-template-columns: 38px 1fr;
   align-items: center;
+  column-gap: 8px;
+  row-gap: 30px;
 }
 
 .dialog__button {
   grid-column: 1 / -1;
-
   padding: 10px;
-  border: 2px solid black;
-  background: linear-gradient(to right, black 50%, white 50%) no-repeat;
-  background-size: 200% 100%;
-  background-position: right;
   transition: background-position 0.5s ease;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  outline: none;
-}
-
-.dialog__button:hover {
-  background-position: left;
 }
 
 .dialog__button-text {
@@ -380,24 +380,19 @@
   font-weight: 400;
 }
 
-.dialog__button:focus-visible {
-  outline: none;
-  box-shadow: 2px 2px 0 0 black;
-}
-
 .dialog__text {
   font-family: var(--pressStart2P-ff);
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
   text-transform: uppercase;
-  padding-left: 20px;
+  padding-left: 13px;
 }
 
 .dialog__icon {
   width: 39px;
   height: 39px;
-  display: block; /* Убирает лишние отступы */
+  display: block;
 }
 
 dialog::backdrop {
@@ -406,13 +401,16 @@ dialog::backdrop {
 
 @media (width >= 1440px) {
   .header {
-    height: 372px;
-    min-height: 372px;
     margin-block: 97px;
   }
 
   .header-title {
+    padding-block-start: 130px;
     padding-block-end: 21px;
+  }
+
+  .header-title-description {
+    padding-block-end: 129px;
   }
 
   .header,
@@ -428,23 +426,27 @@ dialog::backdrop {
   }
 
   .dialog {
-    min-width: 353px;
-    width: 353px;
-    padding: 14px 28px;
+    padding: 26px 26px;
+    width: 350px;
+    min-width: 350px;
+  }
+
+  .dialog__text {
+    padding-left: 14px;
   }
 
   .dialog__button {
     flex-direction: row;
-    align-items: center;
     gap: 6px;
     padding: 11px 15.5px;
   }
 
   .open__dialog-button {
     display: block;
-
     gap: 8px;
     padding-inline: 20px;
+    padding-block-start: 12px;
+    padding-block-end: 12px;
   }
 
   .open__dialog-button svg {

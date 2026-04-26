@@ -4,7 +4,16 @@
   /* 2. Горизонтальные полосы (сверху вниз) */
   /* 3. Фоновый цветовой переход */
   --complex-grid-bg:
-    repeating-linear-gradient(
+    repeating-linear-gradient(90deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px),
+    repeating-linear-gradient(180deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px),
+    linear-gradient(180deg, #e7e7e7 0%, #e7e7e7 0.01%, #1a1a1a 100%);
+  --inter-ff: "Inter", sans-serif;
+  --pressStart2P-ff: "Press Start 2P", fantasy;
+  --white-bg-color: white;
+}
+
+/* 
+repeating-linear-gradient(
       to right,
       rgba(26, 26, 26, 1) 0,
       rgba(26, 26, 26, 1) 2px,
@@ -23,7 +32,4 @@
       rgba(231, 231, 231, 1) 0%,
       rgba(26, 26, 26, 1) 100%
     );
-  --inter-ff: "Inter", sans-serif;
-  --pressStart2P-ff: "Press Start 2P", sans-serif;
-  --white-bg-color: white;
-}
+*/
