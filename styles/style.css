@@ -107,6 +107,7 @@
     /* 
     -webkit-text-stroke: 1px rgba(255, 255, 255, 1);
     text-stroke: 1px rgba(255, 255, 255, 1);
+    text-shadow:none;
 
     */
     -webkit-text-stroke: 0.1px rgba(255, 255, 255, 1);
@@ -399,6 +400,15 @@ dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
+@media (width >= 1080px) {
+  .header,
+  .section {
+    width: 700px;
+    min-width: 700px;
+    justify-self: center;
+  }
+}
+
 @media (width >= 1440px) {
   .header {
     margin-block: 97px;
@@ -411,14 +421,6 @@ dialog::backdrop {
 
   .header-title-description {
     padding-block-end: 129px;
-  }
-
-  .header,
-  .section {
-    width: 700px;
-    min-width: 700px;
-
-    justify-self: center;
   }
 
   .html-text {
